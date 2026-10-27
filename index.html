@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f1e9">
+  <meta name="description" content="撮影・仕事・遊びの持ち物を、出発前にさっと確認できるアプリ。">
+  <title>もってく？｜持ち物チェック</title>
+  <link rel="stylesheet" href="app.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <div class="brand"><span class="brand-mark" aria-hidden="true">✳</span><span>もってく？</span></div>
+      <span class="local-badge">この端末に保存</span>
+    </header>
+
+    <section class="intro" aria-labelledby="page-title">
+      <p class="eyebrow">おでかけ前の、ひと呼吸。</p>
+      <h1 id="page-title">今日の持ち物、<br><em>もう大丈夫。</em></h1>
+      <p class="lead">行き先を選んで、ひとつずつ確認しよう。</p>
+    </section>
+
+    <nav class="situations" aria-label="シチュエーション">
+      <button type="button" class="situation" data-situation="shoot" aria-pressed="true"><span aria-hidden="true">📷</span> 撮影</button>
+      <button type="button" class="situation" data-situation="work" aria-pressed="false"><span aria-hidden="true">💼</span> 仕事</button>
+      <button type="button" class="situation" data-situation="play" aria-pressed="false"><span aria-hidden="true">🎈</span> 遊び</button>
+    </nav>
+
+    <section class="card" aria-labelledby="list-title">
+      <div class="card-head">
+        <div>
+          <p class="card-kicker" id="situation-label">撮影の日</p>
+          <h2 id="list-title">持ち物チェック</h2>
+        </div>
+        <div class="progress-ring" id="progress-ring" aria-hidden="true"><span id="progress-number">0/0</span></div>
+      </div>
+      <p class="progress-copy" id="progress-copy" aria-live="polite"></p>
+      <div class="progress-track"><div id="progress-bar"></div></div>
+
+      <ul id="item-list" class="item-list" aria-label="持ち物"></ul>
+      <p id="empty-message" class="empty-message" hidden>まだ持ち物がありません。下のボタンから追加できます。</p>
+
+      <div class="card-actions">
+        <button type="button" id="add-button" class="primary-button"><span aria-hidden="true">＋</span> 持ち物を追加</button>
+        <button type="button" id="reset-button" class="quiet-button">チェックを戻す</button>
+      </div>
+    </section>
+
+    <section class="note" aria-label="データの保存について">
+      <span aria-hidden="true">✦</span>
+      <div>
+        <strong>自分のペースで、少しずつ。</strong>
+        <p>チェックや持ち物は、このブラウザの端末内に保存されます。ブラウザのデータを消すと失われるので、ときどきバックアップしてください。</p>
+        <div class="backup-actions">
+          <button type="button" id="export-button">バックアップを保存</button>
+          <button type="button" id="import-button">バックアップを読み込む</button>
+          <input type="file" id="import-file" accept="application/json,.json" hidden>
+        </div>
+      </div>
+    </section>
+    <p id="status-message" class="status-message" role="status" aria-live="polite"></p>
+  </main>
+
+  <dialog id="item-dialog" class="item-dialog" aria-labelledby="dialog-title">
+    <form id="item-form">
+      <h2 id="dialog-title">持ち物を追加</h2>
+      <label for="item-name">持ち物の名前</label>
+      <input id="item-name" name="name" type="text" maxlength="60" autocomplete="off" required placeholder="例：予備のバッテリー">
+      <div class="dialog-actions">
+        <button type="button" id="cancel-button" class="quiet-button">キャンセル</button>
+        <button type="submit" class="primary-button">保存する</button>
+      </div>
+    </form>
+  </dialog>
+</body>
+</html>
